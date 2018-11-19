@@ -1,0 +1,16 @@
+[
+{
+  "modid": "elynia",
+  "name": "Elynia Client",
+  "description": "A simple, efficient, and yet powerful implementation of small modifications into the Minecraft Client using Forge.",
+  "version": "1.0",
+  "mcversion": "1.8.9",
+  "url": "https://github.com/Frontear/ElyniaClient",
+  "updateUrl": "",
+  "authorList": ["Frontear"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
