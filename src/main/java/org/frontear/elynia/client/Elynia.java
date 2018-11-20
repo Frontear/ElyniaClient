@@ -16,7 +16,7 @@ public class Elynia {
     @SubscribeEvent
     public void onRenderOverlay(RenderGameOverlayEvent event) {
         if (event.type == RenderGameOverlayEvent.ElementType.TEXT) {
-            guiManager.DrawHeader();
+            guiManager.Draw();
         }
     }
 

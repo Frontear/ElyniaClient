@@ -22,6 +22,20 @@ public class ModManager {
         return null;
     }
 
+    public ArrayList<ModBase> GetMods() {
+        return mods;
+    }
+
+    public ArrayList<ModBase> GetEnabledMods() {
+        ArrayList<ModBase> enabledMods = new ArrayList<ModBase>();
+        for (ModBase mod : mods) {
+            if (mod.state)
+                enabledMods.add(mod);
+        }
+
+        return enabledMods;
+    }
+
     public void Close() {
         mods.clear();
     }
