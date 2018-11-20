@@ -5,6 +5,7 @@ import net.minecraft.util.ChatStyle;
 import net.minecraft.util.EnumChatFormatting;
 import org.frontear.elynia.ElyniaClient;
 import org.frontear.elynia.client.commands.Clear;
+import org.frontear.elynia.client.commands.Help;
 import org.frontear.elynia.client.commands.base.CommandBase;
 
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ public class CommandManager {
         this.commandPrefix = prefix;
 
         commands.add(new Clear());
+        commands.add(new Help());
     }
 
     public CommandBase GetCommand(Class<? extends CommandBase> modClass) {
