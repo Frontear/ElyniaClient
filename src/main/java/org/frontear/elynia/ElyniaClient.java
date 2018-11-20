@@ -13,10 +13,9 @@ import org.lwjgl.opengl.Display;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-@Mod(modid = ElyniaClient.MODID)
+@Mod(modid = "elynia") // update with mcmod.info
 public class ElyniaClient
 {
-    static final String MODID = "elynia"; // this value should be updated alongside whatever is in the mcmod.info
     public static final String CLIENT_NAME = "Elynia";
     private static final double CLIENT_VERSION = 1.0;
 
