@@ -1,6 +1,7 @@
 package org.frontear.elynia.client;
 
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.frontear.elynia.client.commands.manager.CommandManager;
 import org.frontear.elynia.client.gui.manager.GuiManager;
@@ -24,6 +25,7 @@ public class Elynia {
     }
 
     public void Shutdown() {
+        MinecraftForge.EVENT_BUS.unregister(this);
         modManager.Close();
         commandManager.Close();
     }
