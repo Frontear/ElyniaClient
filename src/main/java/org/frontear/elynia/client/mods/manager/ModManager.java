@@ -9,6 +9,7 @@ public class ModManager {
     private ArrayList<ModBase> mods = new ArrayList<ModBase>();
     public ModManager() {
         mods.add(new Brightness());
+        mods.add(new ClickGui());
         mods.add(new Console());
         mods.add(new NoFov());
         mods.add(new Rainbow());
@@ -26,6 +27,17 @@ public class ModManager {
 
     public ArrayList<ModBase> GetMods() {
         return mods;
+    }
+
+    public ArrayList<ModBase> GetVisibleMods() {
+        ArrayList<ModBase> visibleMods = new ArrayList<ModBase>();
+        for (ModBase mod : mods) {
+            if (!mod.info.hide()) {
+                visibleMods.add(mod);
+            }
+        }
+
+        return visibleMods;
     }
 
     public ArrayList<ModBase> GetEnabledMods() {
