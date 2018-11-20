@@ -3,6 +3,8 @@ package org.frontear.elynia.client.gui;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.ChatStyle;
+import net.minecraft.util.EnumChatFormatting;
 import org.apache.commons.lang3.ArrayUtils;
 import org.frontear.elynia.ElyniaClient;
 import org.frontear.elynia.client.commands.base.CommandBase;
@@ -63,7 +65,7 @@ public class Console extends GuiScreen {
             }
 
             if (!commandIssued) {
-                mc.ingameGUI.getChatGUI().printChatMessage(new ChatComponentText("Unknown command."));
+                mc.ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(commandManager.responseHead + " " + "Unknown command.").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.GRAY)));
             }
         }
     }
