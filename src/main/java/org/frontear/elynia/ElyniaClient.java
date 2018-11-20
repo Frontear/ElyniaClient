@@ -21,7 +21,7 @@ public class ElyniaClient
     private static final double CLIENT_VERSION = 1.0;
 
     public static Elynia INSTANCE;
-    private static Configuration CONFIG;
+    private Configuration config;
 
     @EventHandler
     public void init(FMLInitializationEvent event) {
@@ -30,7 +30,7 @@ public class ElyniaClient
             public void run() {
                 MinecraftForge.EVENT_BUS.register(INSTANCE = new Elynia());
                 try {
-                    (CONFIG = new Configuration()).ReadConfig();
+                    (config = new Configuration()).ReadConfig();
                 }
                 catch (IOException e) {}
             }
@@ -47,7 +47,7 @@ public class ElyniaClient
                     @Override
                     public void run() {
                         try {
-                            CONFIG.SyncConfig();
+                            config.SyncConfig();
                         }
                         catch (FileNotFoundException e) {}
                         INSTANCE.Shutdown();
