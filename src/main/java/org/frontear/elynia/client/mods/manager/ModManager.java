@@ -11,6 +11,15 @@ public class ModManager {
         mods.add(new Sprint());
     }
 
+    public ModBase GetMod(Class<? extends ModBase> modClass) {
+        for (ModBase mod : mods) {
+            if (mod.getClass() == modClass)
+                return mod;
+        }
+
+        return null;
+    }
+
     public void Close() {
         mods.clear();
     }
