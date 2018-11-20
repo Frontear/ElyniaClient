@@ -9,7 +9,7 @@ public class Brightness extends ModBase {
     private float previousGamma;
 
     @Override
-    protected void onToggle(boolean state) {
+    public void onToggle(boolean state) {
         if (state) previousGamma = mc.gameSettings.gammaSetting;
         mc.gameSettings.gammaSetting = state ? 100f : previousGamma;
     }

@@ -6,8 +6,12 @@ import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import org.frontear.elynia.client.Elynia;
+import org.frontear.elynia.config.Configuration;
 import org.frontear.elynia.helper.BackgroundTask;
 import org.lwjgl.opengl.Display;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 @Mod(modid = ElyniaClient.MODID)
 public class ElyniaClient
@@ -17,6 +21,7 @@ public class ElyniaClient
     private static final double CLIENT_VERSION = 1.0;
 
     public static Elynia INSTANCE;
+    private static Configuration CONFIG;
 
     @EventHandler
     public void init(FMLInitializationEvent event) {
@@ -24,6 +29,10 @@ public class ElyniaClient
             @Override
             public void run() {
                 MinecraftForge.EVENT_BUS.register(INSTANCE = new Elynia());
+                try {
+                    (CONFIG = new Configuration()).ReadConfig();
+                }
+                catch (IOException e) {}
             }
         });
     }
@@ -37,9 +46,12 @@ public class ElyniaClient
                 Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
                     @Override
                     public void run() {
+                        try {
+                            CONFIG.SyncConfig();
+                        }
+                        catch (FileNotFoundException e) {}
                         INSTANCE.Shutdown();
                         BackgroundTask.Shutdown();
-                        System.out.println("Goodbye!");
                     }
                 }));
             }

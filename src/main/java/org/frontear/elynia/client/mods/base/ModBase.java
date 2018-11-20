@@ -24,7 +24,7 @@ public class ModBase {
     public final void Toggle() {
         onToggle(state = !state);
     } // call the onToggle method, and inverse state
-    protected void onToggle(boolean state) {} // this should be overrided if you want custom behaviour when your binding is toggled on or off
+    public void onToggle(boolean state) {} // this should be overrided if you want custom behaviour when your binding is toggled on or off
 
     @SubscribeEvent
     public final void onKey(InputEvent.KeyInputEvent event) {
