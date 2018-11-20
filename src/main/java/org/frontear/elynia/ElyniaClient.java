@@ -16,7 +16,7 @@ public class ElyniaClient
     public static final String CLIENT_NAME = "Elynia";
     private static final double CLIENT_VERSION = 1.0;
 
-    private static Elynia INSTANCE;
+    public static Elynia INSTANCE;
 
     @EventHandler
     public void init(FMLInitializationEvent event) {

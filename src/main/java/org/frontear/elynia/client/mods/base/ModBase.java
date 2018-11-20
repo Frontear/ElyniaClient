@@ -11,7 +11,7 @@ import org.frontear.elynia.ElyniaClient;
 public class ModBase {
     public ModInfo info = getClass().getAnnotation(ModInfo.class); // get the information from the @ModInfo annotation
     protected Minecraft mc = Minecraft.getMinecraft(); // minecraft instance
-    protected boolean state; // state of mod
+    public boolean state; // state of mod
     private KeyBinding mod; // keybinding of the mod which detects keypresses and lists it as an official keybind
 
     public ModBase() {
