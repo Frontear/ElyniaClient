@@ -55,7 +55,7 @@ public class Console extends GuiScreen {
     private void ParseCommand(String message) {
         boolean commandIssued = false;
         if (message.startsWith(".")) {
-            for (CommandBase command : commandManager.GetMods()) {
+            for (CommandBase command : commandManager.GetCommands()) {
                 String the_command = message.replaceFirst(".", "");
                 String[] the_arguments = commandManager.CommandArgs(the_command);
 

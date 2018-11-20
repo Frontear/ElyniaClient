@@ -22,7 +22,7 @@ public class CommandManager {
         commands.add(new Clear());
     }
 
-    public CommandBase GetMod(Class<? extends CommandBase> modClass) {
+    public CommandBase GetCommand(Class<? extends CommandBase> modClass) {
         for (CommandBase command : commands) {
             if (command.getClass() == modClass)
                 return command;
@@ -31,7 +31,7 @@ public class CommandManager {
         return null;
     }
 
-    public ArrayList<CommandBase> GetMods() {
+    public ArrayList<CommandBase> GetCommands() {
         return commands;
     }
 
