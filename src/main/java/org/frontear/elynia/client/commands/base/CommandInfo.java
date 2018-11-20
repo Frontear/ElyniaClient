@@ -1,11 +1,10 @@
-package org.frontear.elynia.client.mods.base;
+package org.frontear.elynia.client.commands.base;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ModInfo {
+public @interface CommandInfo {
     String name();
-    int key();
-    boolean hide() default false;
+    String desc();
 }
