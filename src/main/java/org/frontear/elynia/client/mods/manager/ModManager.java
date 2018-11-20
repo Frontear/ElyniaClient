@@ -17,10 +17,11 @@ public class ModManager {
         mods.add(new Sprint());
     }
 
-    public ModBase GetMod(Class<? extends ModBase> modClass) {
+    public <T extends ModBase> T GetMod(Class<T> modClass) {
         for (ModBase mod : mods) {
-            if (mod.getClass() == modClass)
-                return mod;
+            if (mod.getClass() == modClass) {
+                return (T) mod; // this shouldn't fail
+            }
         }
 
         return null;

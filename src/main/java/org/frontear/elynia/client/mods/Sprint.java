@@ -11,8 +11,13 @@ public class Sprint extends ModBase {
     @SubscribeEvent
     public void onLivingUpdate(LivingEvent.LivingUpdateEvent event) {
         if (!state) return; if (mc.thePlayer == null) return;
-        if (mc.thePlayer.moveForward > 0 && !mc.thePlayer.isSprinting() && mc.thePlayer.getFoodStats().getFoodLevel() > 6) {
+        if (canSprint()) {
             mc.thePlayer.setSprinting(true);
         }
+    }
+
+    private boolean canSprint() {
+        return mc.thePlayer.moveForward > 0 && !mc.thePlayer.isSprinting() && !mc.thePlayer.isCollidedHorizontally && mc.thePlayer.getFoodStats().getFoodLevel() > 6
+                && !mc.thePlayer.isBlocking() && !mc.thePlayer.isSneaking();
     }
 }
