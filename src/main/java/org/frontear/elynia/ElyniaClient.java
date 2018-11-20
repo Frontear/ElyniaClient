@@ -13,15 +13,17 @@ import org.lwjgl.opengl.Display;
 public class ElyniaClient
 {
     static final String MODID = "elynia"; // this value should be updated alongside whatever is in the mcmod.info
-    private static final String CLIENT_NAME = "Elynia";
+    public static final String CLIENT_NAME = "Elynia";
     private static final double CLIENT_VERSION = 1.0;
+
+    private static Elynia INSTANCE;
 
     @EventHandler
     public void init(FMLInitializationEvent event) {
         BackgroundTask.Run(new Runnable() {
             @Override
             public void run() {
-                MinecraftForge.EVENT_BUS.register(new Elynia());
+                MinecraftForge.EVENT_BUS.register(INSTANCE = new Elynia());
             }
         });
     }
@@ -35,6 +37,8 @@ public class ElyniaClient
                 Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
                     @Override
                     public void run() {
+                        INSTANCE.Shutdown();
+                        BackgroundTask.Shutdown();
                         System.out.println("Goodbye!");
                     }
                 }));
