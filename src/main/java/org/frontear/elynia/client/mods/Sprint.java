@@ -18,6 +18,6 @@ public class Sprint extends ModBase {
 
     private boolean canSprint() {
         return mc.thePlayer.moveForward > 0 && !mc.thePlayer.isSprinting() && !mc.thePlayer.isCollidedHorizontally && mc.thePlayer.getFoodStats().getFoodLevel() > 6
-                && !mc.thePlayer.isBlocking() && !mc.thePlayer.isSneaking();
+                && !mc.thePlayer.isSneaking() && !mc.thePlayer.isUsingItem();
     }
 }

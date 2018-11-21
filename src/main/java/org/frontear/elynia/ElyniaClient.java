@@ -52,7 +52,6 @@ public class ElyniaClient
                         }
                         catch (FileNotFoundException e) {}
                         INSTANCE.Shutdown();
-                        BackgroundTask.Shutdown();
                     }
                 }));
                 UPTIME = new Timer();
