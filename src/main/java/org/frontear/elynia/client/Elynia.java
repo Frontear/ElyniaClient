@@ -1,8 +1,13 @@
 package org.frontear.elynia.client;
 
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.ChatStyle;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import org.frontear.elynia.ElyniaClient;
 import org.frontear.elynia.client.commands.manager.CommandManager;
 import org.frontear.elynia.client.gui.manager.GuiManager;
 import org.frontear.elynia.client.mods.manager.ModManager;
@@ -22,6 +27,12 @@ public class Elynia {
         if (event.type == RenderGameOverlayEvent.ElementType.TEXT) {
             guiManager.Draw();
         }
+    }
+
+    @SubscribeEvent
+    public void onNameFormat(PlayerEvent.NameFormat event) {
+        event.displayname = new ChatComponentText(ElyniaClient.CLIENT_NAME + " " + "User").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.GOLD)).getFormattedText();
+        // todo: allow the user to set this on startup through a prompt, if they'd like.
     }
 
     public void Shutdown() {
