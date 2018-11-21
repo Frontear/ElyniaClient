@@ -8,6 +8,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import org.frontear.elynia.client.Elynia;
 import org.frontear.elynia.config.Configuration;
 import org.frontear.elynia.helper.BackgroundTask;
+import org.frontear.elynia.helper.Timer;
 import org.lwjgl.opengl.Display;
 
 import java.io.FileNotFoundException;
@@ -20,6 +21,7 @@ public class ElyniaClient
     private static final double CLIENT_VERSION = 1.0;
 
     public static Elynia INSTANCE;
+    public static Timer UPTIME;
     private Configuration config;
 
     @EventHandler
@@ -53,6 +55,7 @@ public class ElyniaClient
                         BackgroundTask.Shutdown();
                     }
                 }));
+                UPTIME = new Timer();
             }
         });
     }
