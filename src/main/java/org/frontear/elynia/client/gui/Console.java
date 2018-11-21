@@ -43,6 +43,9 @@ public class Console extends GuiScreen {
             ParseCommand(console.getText());
             removeConsole = true;
         }
+        else if (keyCode == Keyboard.KEY_TAB) {
+            AutoComplete(console.getText());
+        }
         else if (keyCode == Keyboard.KEY_ESCAPE) {
             removeConsole = true;
         }
@@ -54,9 +57,9 @@ public class Console extends GuiScreen {
 
     private void ParseCommand(String message) {
         boolean commandIssued = false;
-        if (message.startsWith(".")) {
+        if (message.startsWith(commandManager.commandPrefix)) {
             for (CommandBase command : commandManager.GetCommands()) {
-                String the_command = message.replaceFirst(".", "");
+                String the_command = message.replaceFirst(commandManager.commandPrefix, "");
                 String[] the_arguments = commandManager.CommandArgs(the_command);
 
                 if (command.info.name().equalsIgnoreCase(the_arguments[0])) {
@@ -66,6 +69,20 @@ public class Console extends GuiScreen {
 
             if (!commandIssued) {
                 mc.ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(commandManager.responseHead + " " + "Unknown command.").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.GRAY)));
+            }
+        }
+    }
+
+    private void AutoComplete(String message) {
+        if (message.startsWith(commandManager.commandPrefix)) {
+            for (CommandBase command : commandManager.GetCommands()) {
+                String the_command = command.info.name().toLowerCase();
+                String the_message = message.replaceFirst(commandManager.commandPrefix, "").toLowerCase();
+
+                if (the_command.startsWith(the_message)) {
+                    console.setText(commandManager.commandPrefix + the_command);
+                    break;
+                }
             }
         }
     }
