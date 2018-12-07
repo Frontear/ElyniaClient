@@ -40,8 +40,4 @@ public class CommandManager {
     public String[] CommandArgs(String message) {
         return message.split(" ");
     }
-
-    public void Close() {
-        commands.clear();
-    }
 }

@@ -1,6 +1,5 @@
 package org.frontear.elynia.client.mods.manager;
 
-import net.minecraftforge.common.MinecraftForge;
 import org.frontear.elynia.client.mods.*;
 import org.frontear.elynia.client.mods.base.ModBase;
 
@@ -50,14 +49,5 @@ public class ModManager {
         }
 
         return enabledMods;
-    }
-
-    public void Close() {
-        for (ModBase mod : mods) {
-            MinecraftForge.EVENT_BUS.unregister(mod);
-            mod.onToggle(false); // force all minecraft values to be reset
-        }
-
-        mods.clear();
     }
 }

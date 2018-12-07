@@ -4,6 +4,7 @@ import net.minecraft.client.Minecraft;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.frontear.elynia.ElyniaClient;
+import org.frontear.elynia.client.Elynia;
 import org.frontear.elynia.client.mods.base.ModBase;
 
 import java.io.*;
@@ -14,7 +15,7 @@ public class Configuration {
     private File config = new File(Minecraft.getMinecraft().mcDataDir, ElyniaClient.CLIENT_NAME.toLowerCase() + ".txt");
     private ArrayList<ModBase> mods;
     public Configuration() throws IOException {
-        mods = ElyniaClient.INSTANCE.modManager.GetMods();
+        mods = Elynia.getElynia().modManager.GetMods();
         boolean createdNow = false;
         if (!config.exists()) {
             createdNow = config.createNewFile();

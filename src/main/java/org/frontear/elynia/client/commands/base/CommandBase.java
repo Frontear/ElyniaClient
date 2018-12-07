@@ -5,7 +5,7 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatStyle;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IChatComponent;
-import org.frontear.elynia.ElyniaClient;
+import org.frontear.elynia.client.Elynia;
 
 public abstract class CommandBase {
     public CommandInfo info = getClass().getAnnotation(CommandInfo.class);
@@ -14,7 +14,7 @@ public abstract class CommandBase {
     public abstract boolean DoCommand(String[] args);
 
     protected final void ClientResponse(IChatComponent message) {
-        mc.ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(ElyniaClient.INSTANCE.commandManager.responseHead + " " + message.getFormattedText()));
+        mc.ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(Elynia.getElynia().commandManager.responseHead + " " + message.getFormattedText()));
     }
 
     protected final IChatComponent ResponseBuilder(String message, ChatStyle style) {

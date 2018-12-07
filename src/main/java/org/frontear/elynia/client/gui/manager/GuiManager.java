@@ -5,6 +5,7 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
 import org.frontear.elynia.ElyniaClient;
+import org.frontear.elynia.client.Elynia;
 import org.frontear.elynia.client.gui.color.Colors;
 import org.frontear.elynia.client.mods.base.ModBase;
 
@@ -34,7 +35,7 @@ public class GuiManager {
     }
 
     private void DrawMods() {
-        ArrayList<ModBase> enabledMods = ElyniaClient.INSTANCE.modManager.GetEnabledMods();
+        ArrayList<ModBase> enabledMods = Elynia.getElynia().modManager.GetEnabledMods();
         for (int i = enabledMods.size() - 1; i >= 0; i--) {
             ModBase mod = enabledMods.get(i);
             fontRenderer.drawStringWithShadow(mod.info.name(), (offset * scale), ((fontRenderer.FONT_HEIGHT + 3) * scale) + (i * 10), Colors.Rainbow().getRGB());

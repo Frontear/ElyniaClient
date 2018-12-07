@@ -6,7 +6,7 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatStyle;
 import net.minecraft.util.EnumChatFormatting;
 import org.apache.commons.lang3.ArrayUtils;
-import org.frontear.elynia.ElyniaClient;
+import org.frontear.elynia.client.Elynia;
 import org.frontear.elynia.client.commands.base.CommandBase;
 import org.frontear.elynia.client.commands.manager.CommandManager;
 import org.lwjgl.input.Keyboard;
@@ -15,7 +15,7 @@ import java.io.IOException;
 
 public class Console extends GuiScreen {
     private GuiTextField console;
-    private final CommandManager commandManager = ElyniaClient.INSTANCE.commandManager;
+    private final CommandManager commandManager = Elynia.getElynia().commandManager;
 
     @Override
     public void initGui() {
