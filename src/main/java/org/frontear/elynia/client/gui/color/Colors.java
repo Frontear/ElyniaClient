@@ -12,7 +12,7 @@ public class Colors {
     }
 
     public static Colors Rainbow() {
-        return new Colors(Elynia.getElynia().modManager.GetMod(Rainbow.class).state ? Color.getHSBColor((float)(System.currentTimeMillis() % 7500L) / 7500f, 0.8f, 0.8f) : new Color(255, 255, 255));
+        return new Colors(Elynia.getElynia().modManager.getSpecific(Rainbow.class).state ? Color.getHSBColor((float)(System.currentTimeMillis() % 7500L) / 7500f, 0.8f, 0.8f) : new Color(255, 255, 255));
     }
 
     public int getRGB() {

@@ -1,5 +1,6 @@
 package org.frontear.elynia.client.mods;
 
+import net.minecraft.potion.Potion;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.frontear.elynia.client.mods.base.ModBase;
@@ -17,7 +18,7 @@ public class Sprint extends ModBase {
     }
 
     private boolean canSprint() {
-        return mc.thePlayer.moveForward > 0 && !mc.thePlayer.isSprinting() && !mc.thePlayer.isCollidedHorizontally && mc.thePlayer.getFoodStats().getFoodLevel() > 6
-                && !mc.thePlayer.isSneaking() && !mc.thePlayer.isUsingItem();
+        // EntityPlayerSP, onLivingUpdate
+        return mc.thePlayer.onGround && !(mc.thePlayer.movementInput.jump) && !(mc.thePlayer.movementInput.sneak) && mc.thePlayer.movementInput.moveForward >= (0.8F) && !mc.thePlayer.isSprinting() && ((float)mc.thePlayer.getFoodStats().getFoodLevel() > 6.0F || mc.thePlayer.capabilities.allowFlying) && !mc.thePlayer.isUsingItem() && !mc.thePlayer.isPotionActive(Potion.blindness);
     }
 }

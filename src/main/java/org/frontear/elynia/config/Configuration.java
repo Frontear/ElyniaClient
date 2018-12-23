@@ -15,7 +15,7 @@ public class Configuration {
     private File config = new File(Minecraft.getMinecraft().mcDataDir, ElyniaClient.CLIENT_NAME.toLowerCase() + ".txt");
     private ArrayList<ModBase> mods;
     public Configuration() throws IOException {
-        mods = Elynia.getElynia().modManager.GetMods();
+        mods = Elynia.getElynia().modManager.getCollection();
         boolean createdNow = false;
         if (!config.exists()) {
             createdNow = config.createNewFile();

@@ -58,7 +58,7 @@ public class Console extends GuiScreen {
     private void ParseCommand(String message) {
         boolean commandIssued = false;
         if (message.startsWith(commandManager.commandPrefix)) {
-            for (CommandBase command : commandManager.GetCommands()) {
+            for (CommandBase command : commandManager.getCollection()) {
                 String the_command = message.replaceFirst(commandManager.commandPrefix, "");
                 String[] the_arguments = commandManager.CommandArgs(the_command);
 
@@ -75,7 +75,7 @@ public class Console extends GuiScreen {
 
     private void AutoComplete(String message) {
         if (message.startsWith(commandManager.commandPrefix)) {
-            for (CommandBase command : commandManager.GetCommands()) {
+            for (CommandBase command : commandManager.getCollection()) {
                 String the_command = command.info.name().toLowerCase();
                 String the_message = message.replaceFirst(commandManager.commandPrefix, "").toLowerCase();
 

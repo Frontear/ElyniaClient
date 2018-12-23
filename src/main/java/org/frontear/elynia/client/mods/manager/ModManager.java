@@ -1,38 +1,18 @@
 package org.frontear.elynia.client.mods.manager;
 
-import org.frontear.elynia.client.mods.*;
+import org.frontear.elynia.basic.Manager;
 import org.frontear.elynia.client.mods.base.ModBase;
 
 import java.util.ArrayList;
 
-public class ModManager {
-    private ArrayList<ModBase> mods = new ArrayList<ModBase>();
+public class ModManager extends Manager<ModBase> {
     public ModManager() {
-        mods.add(new Brightness());
-        mods.add(new ClickGui());
-        mods.add(new Console());
-        mods.add(new NoFov());
-        mods.add(new Rainbow());
-        mods.add(new Sprint());
-    }
-
-    public <T extends ModBase> T GetMod(Class<T> modClass) {
-        for (ModBase mod : mods) {
-            if (mod.getClass() == modClass) {
-                return (T) mod; // this shouldn't fail
-            }
-        }
-
-        return null;
-    }
-
-    public ArrayList<ModBase> GetMods() {
-        return mods;
+        addReflectively("org.frontear.elynia.client.mods", ModBase.class);
     }
 
     public ArrayList<ModBase> GetVisibleMods() {
         ArrayList<ModBase> visibleMods = new ArrayList<ModBase>();
-        for (ModBase mod : mods) {
+        for (ModBase mod : collection) {
             if (!mod.info.hide()) {
                 visibleMods.add(mod);
             }
@@ -43,7 +23,7 @@ public class ModManager {
 
     public ArrayList<ModBase> GetEnabledMods() {
         ArrayList<ModBase> enabledMods = new ArrayList<ModBase>();
-        for (ModBase mod : mods) {
+        for (ModBase mod : collection) {
             if (mod.state && !mod.info.hide())
                 enabledMods.add(mod);
         }
