@@ -9,8 +9,9 @@ public class ModData extends Data<ModInfo> {
     public boolean hide;
     @Expose public boolean state;
 
-    public ModData(Object instance, Class<ModInfo> infoClass) {
+    ModData(Object instance, Class<ModInfo> infoClass) {
         super(instance, infoClass);
+
         name = info.name();
         key = info.key();
         hide = info.hide();

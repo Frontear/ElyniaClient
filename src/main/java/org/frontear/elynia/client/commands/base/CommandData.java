@@ -8,7 +8,7 @@ public class CommandData extends Data<CommandInfo> {
     @Expose public String desc;
     @Expose public int usageCount;
 
-    public CommandData(Object instance, Class<CommandInfo> infoClass) {
+    CommandData(Object instance, Class<CommandInfo> infoClass) {
         super(instance, infoClass);
 
         name = info.name();
