@@ -62,8 +62,9 @@ public class Console extends GuiScreen {
                 String the_command = message.replaceFirst(commandManager.commandPrefix, "");
                 String[] the_arguments = commandManager.CommandArgs(the_command);
 
-                if (command.info.name().equalsIgnoreCase(the_arguments[0])) {
+                if (command.data.name.equalsIgnoreCase(the_arguments[0])) {
                     commandIssued = command.DoCommand(ArrayUtils.remove(the_arguments, 0)); // the 0th element is just the command name, we don't need that as an argument, since it invokes the command
+                    if (commandIssued) command.data.usageCount++;
                 }
             }
 
@@ -76,7 +77,7 @@ public class Console extends GuiScreen {
     private void AutoComplete(String message) {
         if (message.startsWith(commandManager.commandPrefix)) {
             for (CommandBase command : commandManager.getCollection()) {
-                String the_command = command.info.name().toLowerCase();
+                String the_command = command.data.name.toLowerCase();
                 String the_message = message.replaceFirst(commandManager.commandPrefix, "").toLowerCase();
 
                 if (the_command.startsWith(the_message)) {

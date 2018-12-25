@@ -1,10 +1,11 @@
 package org.frontear.elynia.basic;
 
+import org.frontear.elynia.config.base.IConfigure;
 import org.frontear.elynia.helper.Reflector;
 
 import java.util.ArrayList;
 
-public class Manager<E> {
+public abstract class Manager<E> implements IConfigure {
     protected final ArrayList<E> collection = new ArrayList<E>();
     public ArrayList<E> getCollection() { return collection; }
     public <S extends E> S getSpecific(Class<S> specifiedElement) {

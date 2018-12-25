@@ -12,7 +12,7 @@ public class Help extends CommandBase {
     public boolean DoCommand(String[] args) {
         ClientResponse(ResponseBuilder("--- Help menu ---", new ChatStyle().setColor(EnumChatFormatting.DARK_GREEN)));
         for (CommandBase command : Elynia.getElynia().commandManager.getCollection()) {
-            ClientResponse(ResponseBuilder(command.info.name() + ": " + command.info.desc(), new ChatStyle().setColor(EnumChatFormatting.WHITE)));
+            ClientResponse(ResponseBuilder(command.data.name + ": " + command.data.desc, new ChatStyle().setColor(EnumChatFormatting.WHITE)));
         }
         ClientResponse(ResponseBuilder("Tip: Use the <tab> key to auto-complete the command", new ChatStyle().setColor(EnumChatFormatting.GREEN)));
 

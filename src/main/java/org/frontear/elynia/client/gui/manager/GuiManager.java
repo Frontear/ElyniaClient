@@ -38,7 +38,7 @@ public class GuiManager {
         ArrayList<ModBase> enabledMods = Elynia.getElynia().modManager.GetEnabledMods();
         for (int i = enabledMods.size() - 1; i >= 0; i--) {
             ModBase mod = enabledMods.get(i);
-            fontRenderer.drawStringWithShadow(mod.info.name(), (offset * scale), ((fontRenderer.FONT_HEIGHT + 3) * scale) + (i * 10), Colors.Rainbow().getRGB());
+            fontRenderer.drawStringWithShadow(mod.data.name, (offset * scale), ((fontRenderer.FONT_HEIGHT + 3) * scale) + (i * 10), Colors.Rainbow().getRGB());
         }
     }
 }

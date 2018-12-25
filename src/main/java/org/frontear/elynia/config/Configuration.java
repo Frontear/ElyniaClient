@@ -1,63 +1,67 @@
 package org.frontear.elynia.config;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.stream.JsonReader;
 import net.minecraft.client.Minecraft;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.frontear.elynia.ElyniaClient;
+import org.frontear.elynia.basic.Manager;
 import org.frontear.elynia.client.Elynia;
-import org.frontear.elynia.client.mods.base.ModBase;
+import org.frontear.elynia.config.base.IConfigurable;
 
 import java.io.*;
-import java.util.ArrayList;
 
-public class Configuration {
+public class Configuration extends Manager<Manager<? extends IConfigurable>> {
+    private final Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
     private Logger logger = LogManager.getLogger();
-    private File config = new File(Minecraft.getMinecraft().mcDataDir, ElyniaClient.CLIENT_NAME.toLowerCase() + ".txt");
-    private ArrayList<ModBase> mods;
-    public Configuration() throws IOException {
-        mods = Elynia.getElynia().modManager.getCollection();
-        boolean createdNow = false;
-        if (!config.exists()) {
-            createdNow = config.createNewFile();
-        }
+    private File origin = new File(Minecraft.getMinecraft().mcDataDir, ElyniaClient.CLIENT_NAME.toLowerCase());
+    public Configuration() {
+        collection.add(Elynia.getElynia().modManager);
+        collection.add(Elynia.getElynia().commandManager);
 
-        if (createdNow) SyncConfig();
+        origin.mkdir(); // if the directory does not exist, create it
     }
 
-    public void ReadConfig() throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(config));
-        String line;
-        while ((line = reader.readLine()) != null) {
-            try {
-                String[] modInfo = line.split(":");
-                for (ModBase mod : mods) {
-                    if (modInfo[0].equals(mod.info.name())) {
-                        mod.onToggle(mod.state = Boolean.parseBoolean(modInfo[1])); // this is done to update any minecraft values in the onToggle upon startup, like brightness
-                    }
-                }
-            }
-            catch (Exception e) {
-                logger.error("Error while attempting to read config", e);
-            }
-        }
-
-        reader.close();
-        logger.info("Config read successfully!");
-    }
-
-    public void SyncConfig() throws FileNotFoundException {
-        PrintWriter writer = new PrintWriter(config);
+    public void ReadConfig() {
         try {
-            for (ModBase mod : mods) {
-                writer.println(mod.info.name() + ":" + String.valueOf(mod.state));
+            for (Manager<? extends IConfigurable> manager : collection) {
+                JsonReader reader = new JsonReader(new FileReader(manager.getFile(origin)));
+                for (IConfigurable configurable : manager.getCollection()) {
+                    if (!configurable.isConfigurable()) continue;
+                    configurable.set(gson, reader);
+                }
+                reader.close();
             }
+
+            logger.info("Successfully read and applied the configuration.");
         }
-        catch (Exception e) {
-            logger.error("Error while attempting to synchronize config", e);
+        catch (IOException e) {
+            logger.error("Unable to read config. Attempting to recreate...");
+            SyncConfig();
         }
-        finally {
-            writer.close();
-            logger.info("Config synchronized successfully!");
+
+    }
+
+    public void SyncConfig() {
+        try {
+            for (Manager<? extends IConfigurable> manager : collection) {
+                PrintWriter writer = new PrintWriter(manager.getFile(origin));
+                for (IConfigurable configurable : manager.getCollection()) {
+                    if (!configurable.isConfigurable()) continue;
+                    writer.println(configurable.read(gson));
+                }
+                writer.close();
+            }
+
+            logger.info("Successfully synchronized the config.");
+        }
+        catch (FileNotFoundException e) {
+            logger.error("Unable to sync config.");
         }
     }
+
+    @Override
+    public File getFile(File origin) { return null; }
 }

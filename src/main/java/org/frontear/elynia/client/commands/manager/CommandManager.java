@@ -7,6 +7,8 @@ import org.frontear.elynia.ElyniaClient;
 import org.frontear.elynia.basic.Manager;
 import org.frontear.elynia.client.commands.base.CommandBase;
 
+import java.io.File;
+
 public class CommandManager extends Manager<CommandBase> {
     public final String commandPrefix;
     public final String responseHead = (new ChatComponentText("[").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.DARK_GRAY)).getFormattedText()
@@ -22,4 +24,7 @@ public class CommandManager extends Manager<CommandBase> {
     public String[] CommandArgs(String message) {
         return message.split(" ");
     }
+
+    @Override
+    public File getFile(File origin) { return new File(origin, "commands.json"); }
 }

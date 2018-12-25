@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Reflector {
+    @SuppressWarnings("UnstableApiUsage")
     public <T> ArrayList<Class<? extends T>> FindClasses(String packageName, Class<T> parentClass) {
         final ArrayList<Class<? extends T>> desiredClasses = new ArrayList<Class<? extends T>>();
         try {

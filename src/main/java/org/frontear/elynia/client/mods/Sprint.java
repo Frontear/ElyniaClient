@@ -11,7 +11,7 @@ import org.lwjgl.input.Keyboard;
 public class Sprint extends ModBase {
     @SubscribeEvent
     public void onLivingUpdate(LivingEvent.LivingUpdateEvent event) {
-        if (!state) return; if (mc.thePlayer == null) return;
+        if (!data.state) return; if (mc.thePlayer == null) return;
         if (canSprint()) {
             mc.thePlayer.setSprinting(true);
         }

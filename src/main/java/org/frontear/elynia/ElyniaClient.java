@@ -10,9 +10,6 @@ import org.frontear.elynia.config.Configuration;
 import org.frontear.elynia.helper.Timer;
 import org.lwjgl.opengl.Display;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
 @Mod(modid = "elynia") // update with mcmod.info
 public class ElyniaClient {
     public static final String CLIENT_NAME = "Elynia";
@@ -24,10 +21,7 @@ public class ElyniaClient {
     @EventHandler
     public void init(FMLInitializationEvent event) {
         MinecraftForge.EVENT_BUS.register(new Elynia());
-        try {
-            (config = new Configuration()).ReadConfig();
-        }
-        catch (IOException e) {}
+        (config = new Configuration()).ReadConfig();
     }
 
     @EventHandler
@@ -36,10 +30,7 @@ public class ElyniaClient {
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             @Override
             public void run() {
-                try {
-                    config.SyncConfig();
-                }
-                catch (FileNotFoundException e) {}
+                config.SyncConfig();
             }
         }));
         UPTIME = new Timer();

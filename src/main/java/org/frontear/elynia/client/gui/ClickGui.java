@@ -14,7 +14,7 @@ public class ClickGui extends GuiScreen {
     public void initGui() {
         for (int i = 0; i < mods.size(); i++) {
             ModBase mod = mods.get(i);
-            this.buttonList.add(new GuiButton(mod.binding.getKeyCode() * -1, this.width / 2 - 100, (this.height / 4 + 20) + (i * 24), mod.info.name()));
+            this.buttonList.add(new GuiButton(mod.binding.getKeyCode() * -1, this.width / 2 - 100, (this.height / 4 + 20) + (i * 24), mod.data.name));
         }
     }
 
