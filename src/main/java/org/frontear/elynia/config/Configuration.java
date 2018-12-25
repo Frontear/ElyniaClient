@@ -4,8 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
 import net.minecraft.client.Minecraft;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.frontear.elynia.ElyniaClient;
 import org.frontear.elynia.basic.Manager;
 import org.frontear.elynia.client.Elynia;
@@ -19,15 +17,12 @@ import java.util.ArrayList;
 
 public class Configuration {
     private final Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
-    private Logger logger = LogManager.getLogger();
-    private File origin = new File(Minecraft.getMinecraft().mcDataDir, ElyniaClient.CLIENT_NAME.toLowerCase());
+    private File origin = ElyniaClient.DIR;
     private final ArrayList<Manager<? extends IConfigurable>> collection = new ArrayList<Manager<? extends IConfigurable>>();
 
     public Configuration() {
         collection.add(Elynia.getElynia().modManager);
         collection.add(Elynia.getElynia().commandManager);
-
-        origin.mkdir(); // if the directory does not exist, create it
     }
 
     public void ReadConfig() {
@@ -36,10 +31,10 @@ public class Configuration {
                 manager.read(new JsonReader(new FileReader(manager.getFile(origin))), gson);
             }
 
-            logger.info("Successfully read and applied the configuration.");
+            ElyniaClient.log.info("Successfully read and applied the configuration.");
         }
         catch (Exception e) {
-            logger.error("Unable to read config. Attempting to recreate...");
+            ElyniaClient.log.error("Unable to read config. Attempting to recreate...");
             SyncConfig();
         }
 
@@ -51,10 +46,10 @@ public class Configuration {
                 manager.write(new PrintWriter(manager.getFile(origin)), gson);
             }
 
-            logger.info("Successfully synchronized the config.");
+            ElyniaClient.log.info("Successfully synchronized the config.");
         }
         catch (FileNotFoundException e) {
-            logger.error("Unable to sync config.");
+            ElyniaClient.log.error("Unable to sync config.");
         }
     }
 }
