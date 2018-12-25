@@ -5,7 +5,7 @@ import org.frontear.elynia.basic.Data;
 
 public class CommandData extends Data<CommandInfo> {
     @Expose public String name;
-    @Expose public String desc;
+    public String desc;
     @Expose public int usageCount;
 
     CommandData(Object instance, Class<CommandInfo> infoClass) {

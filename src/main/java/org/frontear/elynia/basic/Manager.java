@@ -6,7 +6,6 @@ import org.frontear.elynia.config.base.IConfigurable;
 import org.frontear.elynia.config.base.IConfigure;
 import org.frontear.elynia.helper.Reflector;
 
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
@@ -43,7 +42,7 @@ public abstract class Manager<E extends IConfigurable> implements IConfigure {
     }
 
     @Override
-    public void read(JsonReader reader, Gson gson) throws IOException {
+    public void read(JsonReader reader, Gson gson) throws Exception {
         for (E element : collection) {
             if (!element.isConfigurable()) continue;
             element.set(gson, reader);

@@ -5,6 +5,6 @@ import com.google.gson.stream.JsonReader;
 
 public interface IConfigurable {
     String get(Gson gson); // read the 'data'.
-    void set(Gson gson, JsonReader reader); // set the 'data' based on what is in the config
+    void set(Gson gson, JsonReader reader) throws Exception; // set the 'data' based on what is in the config
     boolean isConfigurable(); // allows us to determine if the data should even be recognized
 }

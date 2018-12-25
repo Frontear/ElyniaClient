@@ -35,7 +35,7 @@ public class Configuration {
 
             logger.info("Successfully read and applied the configuration.");
         }
-        catch (IOException e) {
+        catch (Exception e) {
             logger.error("Unable to read config. Attempting to recreate...");
             SyncConfig();
         }
