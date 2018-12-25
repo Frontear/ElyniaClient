@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 public abstract class Manager<E extends IConfigurable> implements IConfigure {
     protected final ArrayList<E> collection = new ArrayList<E>();
+
     public ArrayList<E> getCollection() { return collection; }
     public <S extends E> S getSpecific(Class<S> specifiedElement) {
         for (E element : collection) {
@@ -31,8 +32,7 @@ public abstract class Manager<E extends IConfigurable> implements IConfigure {
         }
     }
 
-    @Override
-    public void write(PrintWriter writer, Gson gson) {
+    @Override public void write(PrintWriter writer, Gson gson) {
         for (E element : collection) {
             if (!element.isConfigurable()) continue;
             writer.println(element.get(gson));
@@ -41,8 +41,7 @@ public abstract class Manager<E extends IConfigurable> implements IConfigure {
         writer.close();
     }
 
-    @Override
-    public void read(JsonReader reader, Gson gson) throws Exception {
+    @Override public void read(JsonReader reader, Gson gson) throws Exception {
         for (E element : collection) {
             if (!element.isConfigurable()) continue;
             element.set(gson, reader);

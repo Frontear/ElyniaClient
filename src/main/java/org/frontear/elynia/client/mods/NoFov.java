@@ -9,8 +9,7 @@ import org.lwjgl.input.Keyboard;
 
 @ModInfo(name = "NoFov", key = Keyboard.KEY_C)
 public class NoFov extends ModBase {
-    @SubscribeEvent
-    public void onFovUpdate(FOVUpdateEvent event) {
+    @SubscribeEvent public void onFovUpdate(FOVUpdateEvent event) {
         if (!data.state) return; if (mc.thePlayer == null) return;
         if (mc.thePlayer.isPotionActive(Potion.moveSpeed) || mc.thePlayer.isPotionActive(Potion.moveSlowdown)) {
             if (mc.thePlayer.isSprinting()) event.newfov = 1.15f;

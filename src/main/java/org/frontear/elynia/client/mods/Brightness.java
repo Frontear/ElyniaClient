@@ -8,8 +8,7 @@ import org.lwjgl.input.Keyboard;
 public class Brightness extends ModBase {
     private float previousGamma;
 
-    @Override
-    public void onToggle(boolean state) {
+    @Override public void onToggle(boolean state) {
         if (state) previousGamma = mc.gameSettings.gammaSetting;
         mc.gameSettings.gammaSetting = state ? 100f : previousGamma;
     }

@@ -12,20 +12,16 @@ import org.lwjgl.opengl.Display;
 
 @Mod(modid = "elynia") // update with mcmod.info
 public class ElyniaClient {
-    public static final String CLIENT_NAME = "Elynia";
-    private static final double CLIENT_VERSION = 1.0;
-
+    public static final String CLIENT_NAME = "Elynia", CLIENT_VERSION = "1.2";
     public static Timer UPTIME;
     private Configuration config;
 
-    @EventHandler
-    public void init(FMLInitializationEvent event) {
+    @EventHandler public void init(FMLInitializationEvent event) {
         MinecraftForge.EVENT_BUS.register(new Elynia());
         (config = new Configuration()).ReadConfig();
     }
 
-    @EventHandler
-    public void post(FMLPostInitializationEvent event) {
+    @EventHandler public void post(FMLPostInitializationEvent event) {
         Display.setTitle(CLIENT_NAME + " " + CLIENT_VERSION);
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             @Override

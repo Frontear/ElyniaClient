@@ -2,6 +2,7 @@ package org.frontear.elynia.helper;
 
 public class Timer {
     private long milliseconds;
+
     public Timer() {
         milliseconds = System.nanoTime() / 1000000L;
     }
@@ -9,17 +10,14 @@ public class Timer {
     public boolean timeElapsed(long time) {
         return getMilliseconds() >= time;
     }
-
     public long getMilliseconds() {
         return (System.nanoTime() / 1000000L) - milliseconds;
     }
-
     public void resetTime() {
         milliseconds = System.nanoTime() / 1000000L;
     }
 
-    @Override
-    public String toString() {
+    @Override public String toString() {
         // note: this doesn't limit the hours at 24
         long seconds = getMilliseconds() / 1000;
         long minutes = seconds / 60;

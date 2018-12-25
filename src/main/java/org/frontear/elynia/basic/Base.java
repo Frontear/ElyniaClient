@@ -11,11 +11,8 @@ import java.lang.reflect.Field;
 public abstract class Base<A extends Annotation, D extends Data<A>> implements IConfigurable {
     public D data; // stores the information from the annotation A, where it can be manipulated
 
-    @Override
-    public String get(Gson gson) { return gson.toJson(data); }
-
-    @Override
-    public void set(Gson gson, JsonReader reader) throws Exception {
+    @Override public String get(Gson gson) { return gson.toJson(data); }
+    @Override public void set(Gson gson, JsonReader reader) throws Exception {
         D gsonData = gson.fromJson(reader, data.getClass()); // grab the instance created by gson
         int l; // keep track of the amount of fields
         Field[] g = gsonData.getClass().getFields(), d = data.getClass().getFields();

@@ -36,8 +36,7 @@ public class ModManager extends Manager<ModBase> {
         return enabledMods;
     }
 
-    @SubscribeEvent
-    public void onKey(InputEvent.KeyInputEvent event) {
+    @SubscribeEvent public void onKey(InputEvent.KeyInputEvent event) {
         for (ModBase mod : collection) {
             // it's really annoying that event doesn't have a 'getKeyCode' method or such that can make this easier. I wouldn't even need a KeyBinding if that were true.
             if (mod.binding.isKeyDown()) {
@@ -46,6 +45,5 @@ public class ModManager extends Manager<ModBase> {
         }
     }
 
-    @Override
-    public File getFile(File origin) { return new File(origin, "mods.json"); }
+    @Override public File getFile(File origin) { return new File(origin, "mods.json"); }
 }

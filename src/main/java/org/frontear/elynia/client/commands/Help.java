@@ -8,8 +8,7 @@ import org.frontear.elynia.client.commands.base.CommandInfo;
 
 @CommandInfo(name = "Help", desc = "lists all commands")
 public class Help extends CommandBase {
-    @Override
-    public boolean DoCommand(String[] args) {
+    @Override public boolean DoCommand(String[] args) {
         ClientResponse(ResponseBuilder("--- Help menu ---", new ChatStyle().setColor(EnumChatFormatting.DARK_GREEN)));
         for (CommandBase command : Elynia.getElynia().commandManager.getCollection()) {
             ClientResponse(ResponseBuilder(command.data.name + ": " + command.data.desc, new ChatStyle().setColor(EnumChatFormatting.WHITE)));

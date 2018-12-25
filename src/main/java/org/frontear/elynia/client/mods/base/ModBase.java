@@ -22,6 +22,5 @@ public class ModBase extends Base<ModInfo, ModData> {
     public final void Toggle() { onToggle(data.state = !data.state); } // call the onToggle method, and inverse state
     public void onToggle(boolean state) {} // this should be overridden if you want custom behaviour when your binding is toggled on or off
 
-    @Override
-    public boolean isConfigurable() { return !data.hide; }
+    @Override public boolean isConfigurable() { return !data.hide; }
 }

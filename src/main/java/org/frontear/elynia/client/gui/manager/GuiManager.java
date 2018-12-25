@@ -16,6 +16,7 @@ public class GuiManager {
     private ScaledResolution window;
     private float scale = 2;
     private int offset = 2; // offset from the specified coordinates, so it doesn't touch the edges of the screen
+
     public void Draw() {
         window = new ScaledResolution(Minecraft.getMinecraft()); // this needs to be done in the event the window size changes. Calculations won't change unless it's instantiated again
         DrawHeader();

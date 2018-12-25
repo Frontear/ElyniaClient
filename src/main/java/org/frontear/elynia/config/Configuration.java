@@ -11,7 +11,10 @@ import org.frontear.elynia.basic.Manager;
 import org.frontear.elynia.client.Elynia;
 import org.frontear.elynia.config.base.IConfigurable;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class Configuration {

@@ -10,8 +10,7 @@ import org.frontear.elynia.client.commands.base.CommandBase;
 import java.io.File;
 
 public class CommandManager extends Manager<CommandBase> {
-    public final String commandPrefix;
-    public final String responseHead = (new ChatComponentText("[").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.DARK_GRAY)).getFormattedText()
+    public final String commandPrefix, responseHead = (new ChatComponentText("[").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.DARK_GRAY)).getFormattedText()
     + new ChatComponentText(ElyniaClient.CLIENT_NAME).setChatStyle(new ChatStyle().setColor(EnumChatFormatting.WHITE)).getFormattedText()
     + new ChatComponentText("]").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.DARK_GRAY)).getFormattedText()); // yes it's ugly.
 
@@ -25,6 +24,5 @@ public class CommandManager extends Manager<CommandBase> {
         return message.split(" ");
     }
 
-    @Override
-    public File getFile(File origin) { return new File(origin, "commands.json"); }
+    @Override public File getFile(File origin) { return new File(origin, "commands.json"); }
 }

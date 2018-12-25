@@ -9,8 +9,7 @@ import org.lwjgl.input.Keyboard;
 
 @ModInfo(name = "Sprint", key = Keyboard.KEY_V)
 public class Sprint extends ModBase {
-    @SubscribeEvent
-    public void onLivingUpdate(LivingEvent.LivingUpdateEvent event) {
+    @SubscribeEvent public void onLivingUpdate(LivingEvent.LivingUpdateEvent event) {
         if (!data.state) return; if (mc.thePlayer == null) return;
         if (canSprint()) {
             mc.thePlayer.setSprinting(true);

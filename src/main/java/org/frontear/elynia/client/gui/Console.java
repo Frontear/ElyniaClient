@@ -17,26 +17,22 @@ public class Console extends GuiScreen {
     private GuiTextField console;
     private final CommandManager commandManager = Elynia.getElynia().commandManager;
 
-    @Override
-    public void initGui() {
+    @Override public void initGui() {
         console = new GuiTextField(-1, fontRendererObj, this.width / 2 - 110, 2, 220, 14);
         console.setMaxStringLength(40);
         console.setText(commandManager.commandPrefix);
     }
 
-    @Override
-    public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+    @Override public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         console.drawTextBox();
         console.setFocused(true);
     }
 
-    @Override
-    public void updateScreen() {
+    @Override public void updateScreen() {
         console.updateCursorCounter();
     }
 
-    @Override
-    protected void keyTyped(char typedChar, int keyCode) throws IOException {
+    @Override protected void keyTyped(char typedChar, int keyCode) throws IOException {
         boolean removeConsole = false;
 
         if (keyCode == Keyboard.KEY_RETURN) {

@@ -7,6 +7,7 @@ import java.awt.*;
 
 public class Colors {
     private int rgb;
+
     private Colors(Color color) {
         this.rgb = color.getRGB();
     }
