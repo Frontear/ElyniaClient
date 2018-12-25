@@ -34,6 +34,10 @@ public class Logging {
         }));
     }
 
+    public String emptyLine() {
+        return System.getProperty("line.separator");
+    }
+
     public void info(String s) {
         log.info(s);
         toFile(s, Level.INFO);

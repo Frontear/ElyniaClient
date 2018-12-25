@@ -2,6 +2,7 @@ package org.frontear.elynia.basic;
 
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
+import org.frontear.elynia.ElyniaClient;
 import org.frontear.elynia.config.base.IConfigurable;
 import org.frontear.elynia.config.base.IConfigure;
 import org.frontear.elynia.helper.Reflector;
@@ -23,12 +24,14 @@ public abstract class Manager<E extends IConfigurable> implements IConfigure {
     }
 
     protected final void addReflectively(String packageName, Class<E> parentClass) {
-        for (Class<? extends E> classFound : new Reflector().FindClasses(packageName, parentClass)) {
-            try {
+        try {
+            for (Class<? extends E> classFound : new Reflector().FindClasses(packageName, parentClass)) {
                 collection.add(classFound.newInstance());
             }
-            catch (InstantiationException e) {}
-            catch (IllegalAccessException e) {}
+            ElyniaClient.logger.info(this.getClass().getSimpleName() + " added modules reflectively!");
+        }
+        catch (Exception e) {
+            ElyniaClient.logger.error(this.getClass().getSimpleName() + " failed to add modules!" + " " + e.getMessage());
         }
     }
 

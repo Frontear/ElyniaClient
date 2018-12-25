@@ -31,25 +31,32 @@ public class Configuration {
                 manager.read(new JsonReader(new FileReader(manager.getFile(origin))), gson);
             }
 
-            ElyniaClient.log.info("Successfully read and applied the configuration.");
+            ElyniaClient.logger.info("Successfully read and applied the configuration.");
         }
         catch (Exception e) {
-            ElyniaClient.log.error("Unable to read config. Attempting to recreate...");
-            SyncConfig();
+            ElyniaClient.logger.error("Unable to read config. Attempting to recreate...");
+            SyncConfig(e);
         }
 
     }
 
     public void SyncConfig() {
+        SyncConfig(null);
+    }
+
+    private void SyncConfig(Exception e) {
+        if (e != null) {
+            ElyniaClient.logger.warn("Error caught from attempting to read the config: " + e.getMessage());
+        }
         try {
             for (Manager<? extends IConfigurable> manager : collection) {
                 manager.write(new PrintWriter(manager.getFile(origin)), gson);
             }
 
-            ElyniaClient.log.info("Successfully synchronized the config.");
+            ElyniaClient.logger.info("Successfully synchronized the config.");
         }
-        catch (FileNotFoundException e) {
-            ElyniaClient.log.error("Unable to sync config.");
+        catch (FileNotFoundException _e) {
+            ElyniaClient.logger.error("Unable to sync config.");
         }
     }
 }
