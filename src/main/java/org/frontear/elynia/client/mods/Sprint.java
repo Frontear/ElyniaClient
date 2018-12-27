@@ -11,7 +11,7 @@ import org.lwjgl.input.Keyboard;
 
 @ModInfo(name = "Sprint", key = Keyboard.KEY_V)
 public class Sprint extends ModBase {
-    @SubscribeEvent public void onLivingUpdate(TickEvent.PlayerTickEvent event) {
+    @SubscribeEvent public void onPlayerTick(TickEvent.PlayerTickEvent event) {
         if (!data.state) return; if (event.phase != TickEvent.Phase.START) return; // see EntityPlayer.onUpdate
         if (event.side != Side.CLIENT) return; // only work on the player if it is a EntityPlayerSP
         if (canSprint((EntityPlayerSP) event.player)) {
