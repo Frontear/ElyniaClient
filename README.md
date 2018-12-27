@@ -10,4 +10,4 @@ A simple, efficient, and yet powerful implementation of small modifications into
 - Either execute the gradle task `build` or run the command `gradlew build`
 
 # License
-This project is licensed under MIT. [tldr](https://tldrlegal.com/license/mit-license) Basically, you can do whatever you want as long as you include the original copyright and license notice in any copy of the software/source.
+This project is licensed under MIT. [tl;dr](https://tldrlegal.com/license/mit-license), you can do whatever you want as long as you include the original copyright and license notice in any copy of the software/source.
