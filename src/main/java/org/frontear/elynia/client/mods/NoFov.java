@@ -7,7 +7,7 @@ import org.frontear.elynia.client.mods.base.ModBase;
 import org.frontear.elynia.client.mods.base.ModInfo;
 import org.lwjgl.input.Keyboard;
 
-@ModInfo(name = "NoFov", key = Keyboard.KEY_C)
+@ModInfo(name = "NoFov", key = Keyboard.KEY_N)
 public class NoFov extends ModBase {
     @SubscribeEvent public void onFovUpdate(FOVUpdateEvent event) {
         if (!data.state) return;

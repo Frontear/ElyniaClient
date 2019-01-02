@@ -52,19 +52,27 @@ public class Console extends GuiScreen {
     }
 
     private void ParseCommand(String message) {
-        boolean commandIssued = false;
+        boolean commandHandled = false;
         if (message.startsWith(commandManager.commandPrefix)) {
             for (CommandBase command : commandManager.getCollection()) {
                 String the_command = message.replaceFirst(commandManager.commandPrefix, "");
                 String[] the_arguments = commandManager.CommandArgs(the_command);
 
                 if (command.data.name.equalsIgnoreCase(the_arguments[0])) {
-                    commandIssued = command.DoCommand(ArrayUtils.remove(the_arguments, 0)); // the 0th element is just the command name, we don't need that as an argument, since it invokes the command
-                    if (commandIssued) command.data.usageCount++;
+                    try {
+                        commandHandled = command.DoCommand(ArrayUtils.remove(the_arguments, 0)); // the 0th element is just the command name, we don't need that as an argument, since it invokes the command
+                    }
+                    catch (Exception e) {
+                        mc.ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(commandManager.responseHead + new ChatComponentText(
+                                command.data.name + " failed to execute!").setChatStyle(
+                                        new ChatStyle().setColor(EnumChatFormatting.GRAY)).getFormattedText()));
+                        commandHandled = true;
+                    }
+                    if (commandHandled) command.data.usageCount++;
                 }
             }
 
-            if (!commandIssued) {
+            if (!commandHandled) {
                 mc.ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(commandManager.responseHead + " " + "Unknown command.").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.GRAY)));
             }
         }

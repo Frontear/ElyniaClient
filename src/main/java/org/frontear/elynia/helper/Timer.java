@@ -4,7 +4,7 @@ public class Timer {
     private long milliseconds;
 
     public Timer() {
-        milliseconds = System.nanoTime() / 1000000L;
+        resetTime();
     }
 
     public boolean timeElapsed(long time) {

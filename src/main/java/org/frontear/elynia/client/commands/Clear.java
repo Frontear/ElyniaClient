@@ -5,7 +5,7 @@ import org.frontear.elynia.client.commands.base.CommandInfo;
 
 @CommandInfo(name = "Clear", desc = "Clears chat")
 public class Clear extends CommandBase {
-    @Override public boolean DoCommand(String[] args) {
+    @Override public boolean DoCommand(String[] args) throws Exception {
         mc.ingameGUI.getChatGUI().clearChatMessages();
         ClientResponse(ResponseBuilder("Chat cleared!"));
 

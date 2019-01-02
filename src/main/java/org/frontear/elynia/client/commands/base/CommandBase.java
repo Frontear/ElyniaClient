@@ -12,7 +12,7 @@ public abstract class CommandBase extends Base<CommandInfo, CommandData> {
     protected Minecraft mc = Minecraft.getMinecraft();
 
     public CommandBase() { data = new CommandData(this, CommandInfo.class); }
-    public abstract boolean DoCommand(String[] args);
+    public abstract boolean DoCommand(String[] args) throws Exception;
     protected final void ClientResponse(IChatComponent message) {
         mc.ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(Elynia.getElynia().commandManager.responseHead + " " + message.getFormattedText()));
     }
